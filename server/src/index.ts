@@ -1,7 +1,6 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import typeDefs from './graphQL/schemas';
-import resolvers from './graphQL/resolvers';
+
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
@@ -19,3 +18,5 @@ const { url } = await startStandaloneServer(server, {
 });
 
 console.log(`🚀  Server ready at: ${url}`);
+
+
