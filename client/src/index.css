@@ -23,10 +23,5 @@
   body {
     @apply text-sm md:text-base;
   }
- 
-  /* Class to adjust with sticky footer */
-  .min-h-main {
-    @apply min-h-[calc(100vh-56px)];
-  }
 }
  
