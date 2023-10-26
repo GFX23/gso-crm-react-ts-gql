@@ -10,6 +10,7 @@ import Home from './pages/Home/Home';
 const App: React.FC = () => {
   return (
     <Router>
+      <div className="container mx-auto flex flex-col justify-center items-center">
       <Navbar />
       <Routes>
         <Route path="/" Component={Home} />
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <Route path="/planner" Component={Planner} />
         <Route path="/todo" Component={Todo} />
       </Routes>
+    </div>
     </Router>
   );
 };

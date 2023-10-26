@@ -1,5 +1,32 @@
 import { gql } from "apollo-server-express"; //will create a schema
 const Schema = gql`
+  #CUSTOMER TYPE
+  type Customer {
+  id: ID!
+  name: String
+  street: String
+  city: String
+  zipcode: String
+  state: String
+  vatCode: String
+  contactName: String
+  email: String
+  phone: String
+  website: String
+}
+input CustomerInput {
+  name: String!
+  street: String!
+  city: String!
+  zipcode: String!
+  state: String!
+  vatCode: String!
+  contactName: String!
+  email: String!
+  phone: String!
+  website: String!
+}
+
   type Person {
     id: ID!
     name: String
@@ -8,11 +35,13 @@ const Schema = gql`
   type Query {
     getAllPeople: [Person] #will return multiple Person instances
     getPerson(id: Int): Person #will return a single Person instance
+    getAllCustomers: [Customer]
   }
   type Mutation {
     #the addPerson commmand will accept an argument of type String.
     #it will return a 'Person' instance. 
     addPerson(name: String): Person
+    addCustomer(input: CustomerInput!): Customer
   }
 `;
 export default Schema; 
