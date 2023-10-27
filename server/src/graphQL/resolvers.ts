@@ -1,7 +1,5 @@
 import { Customer } from "../types/types";
 
-
-
 interface Person {
   id: number;
   name: string;
@@ -15,11 +13,11 @@ interface Args {
 const Resolvers = {
   Query: {
     getAllCustomers: (): Customer[] => customersArray,
-    getAllPeople: (): Person[] => people,
-    getPerson: (_: any, args: Args): Person | null => {
-      console.log(args);
-      const foundPerson = people.find((person) => person.id === args.id);
-      return foundPerson || null;
+    getCustomer: (_: any, args: { id: string }): Customer | null => {
+      const foundCustomer = customersArray.find(
+        (customer) => customer.id === args.id
+      );
+      return foundCustomer || null;
     },
   },
   Mutation: {
@@ -33,7 +31,9 @@ const Resolvers = {
     },
     addCustomer: (_: any, args: { input: Customer }): Customer => {
       const newCustomer: Customer = {
-        id: (Math.max(...customersArray.map(customer => parseInt(customer.id)))).toString(),
+        id: Math.max(
+          ...customersArray.map((customer) => parseInt(customer.id))
+        ).toString(),
         name: args.input.name,
         street: args.input.street,
         city: args.input.city,
@@ -47,10 +47,10 @@ const Resolvers = {
       };
       customersArray.push(newCustomer);
       return newCustomer;
-    }
+    },
   },
-}
-export default Resolvers; 
+};
+export default Resolvers;
 
 let people: { id: number; name: string }[] = [
   { id: 1, name: "Cassie" },
@@ -162,5 +162,5 @@ let customersArray: Customer[] = [
     email: "david.epic@example.com",
     phone: "789-012-3456",
     website: "www.epiccreations.com",
-  }
+  },
 ];

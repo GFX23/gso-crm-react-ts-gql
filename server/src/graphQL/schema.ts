@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express"; //will create a schema
 const Schema = gql`
   #CUSTOMER TYPE
   type Customer {
-  id: ID!
+  id: String!
   name: String
   street: String
   city: String
@@ -27,15 +27,11 @@ input CustomerInput {
   website: String!
 }
 
-  type Person {
-    id: ID!
-    name: String
-  }
+ 
   #handle user commands
   type Query {
-    getAllPeople: [Person] #will return multiple Person instances
-    getPerson(id: Int): Person #will return a single Person instance
     getAllCustomers: [Customer]
+    getCustomer(id: String): Customer
   }
   type Mutation {
     #the addPerson commmand will accept an argument of type String.
