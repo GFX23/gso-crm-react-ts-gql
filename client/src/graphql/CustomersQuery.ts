@@ -27,4 +27,15 @@ export const GET_CUSTOMER = gql`
   }
 `;
 
+export const  ADD_CUSTOMER = gql`
+  mutation addCustomer($input: CustomerInput!) {
+  addCustomer(input: $input) {
+    name
+    email
+    id
+    contactName
+    city
+  }
+}`
+
 export default GET_ALL_CUSTOMERS;

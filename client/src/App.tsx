@@ -18,8 +18,8 @@ const App: React.FC = () => {
         <Route path="/" Component={Home} />
         <Route path="/orders" Component={Orders} />
         <Route path="/customers" Component={Customers}>
-          <Route path={`/customers/:customerId`} Component={CustomerDetail}/>
           <Route path={"/customers/addCustomer"} Component={CustomerForm}/>
+          <Route path={`/customers/:customerId`} Component={CustomerDetail}/>
         </Route>
         <Route path="/planner" Component={Planner} />
         <Route path="/todo" Component={Todo} />

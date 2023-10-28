@@ -34,9 +34,6 @@ input CustomerInput {
     getCustomer(id: String): Customer
   }
   type Mutation {
-    #the addPerson commmand will accept an argument of type String.
-    #it will return a 'Person' instance. 
-    addPerson(name: String): Person
     addCustomer(input: CustomerInput!): Customer
   }
 `;

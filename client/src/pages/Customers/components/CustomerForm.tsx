@@ -1,16 +1,23 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import type { Customer } from '../../../types/types';
+import { useMutation } from '@apollo/client';
+import GET_ALL_CUSTOMERS, { ADD_CUSTOMER } from '../../../graphql/CustomersQuery';
 
 
 const CustomerForm: React.FC = () => {
   const { register, handleSubmit, reset, formState: { errors }} = useForm<Customer>();
-  const onSubmit: SubmitHandler<Customer> = (data) => {
+  const [addCustomer, { loading, error }] = useMutation(ADD_CUSTOMER, {refetchQueries: [GET_ALL_CUSTOMERS]});
+  const onSubmit: SubmitHandler<Customer> = async (data) => {
+    await addCustomer({variables: {input: data}})
     console.log(data);
     reset()
   }
 
   console.log(errors)
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
 
   return (
     <form className="flex flex-row w-full gap-2 justify-center pt-2" onSubmit={handleSubmit(onSubmit)}>

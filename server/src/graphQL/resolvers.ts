@@ -1,5 +1,6 @@
 import { Customer } from "../types/types";
 
+
 interface Person {
   id: number;
   name: string;
@@ -21,19 +22,11 @@ const Resolvers = {
     },
   },
   Mutation: {
-    addPerson: (_: any, args: Args): Person => {
-      const newPerson: Person = {
-        id: people.length + 1,
-        name: args.name,
-      };
-      people.push(newPerson);
-      return newPerson;
-    },
     addCustomer: (_: any, args: { input: Customer }): Customer => {
       const newCustomer: Customer = {
-        id: Math.max(
+        id: (Math.max(
           ...customersArray.map((customer) => parseInt(customer.id))
-        ).toString(),
+        )+1).toString(),
         name: args.input.name,
         street: args.input.street,
         city: args.input.city,
@@ -51,12 +44,6 @@ const Resolvers = {
   },
 };
 export default Resolvers;
-
-let people: { id: number; name: string }[] = [
-  { id: 1, name: "Cassie" },
-  { id: 2, name: "Rue" },
-  { id: 3, name: "Lexi" },
-];
 
 let customersArray: Customer[] = [
   {
