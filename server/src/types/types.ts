@@ -3,8 +3,8 @@ export type OrderItem = {
   id: string;
   name: string;
   status: string;
-  price: number;
-  quantity: number;
+  price: string;
+  quantity: string;
 };
 
 export type Operations = {
@@ -17,7 +17,6 @@ export type Operations = {
   packaging: {state: boolean, date: string}
   shipping: {state: boolean, date: string}
 }
-
 
 export type Order = {
   id: string;
@@ -41,25 +40,4 @@ export type Customer = {
   email: string;
   phone: string;
   website: string;
-}
-
-// for MongoDB
-
-
-export type FetchCustomer = {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  street: string;
-  city: string;
-  zipcode: string;
-  state: string;
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  }
 }

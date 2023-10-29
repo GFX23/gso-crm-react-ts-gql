@@ -1,15 +1,15 @@
 import { gql } from "@apollo/client";
 
-export const GET_ALL_CUSTOMERS = gql`
+export const GET_ALL_ORDER_NAMES = gql`
   query getAllCustomers {
-    getAllCustomers {
-      name
-      id
-    }
+    getAllOrders {
+    id
+    name
   }
+}
 `;
 
-export const GET_CUSTOMER = gql`
+export const GET_ORDER = gql`
   query getCustomer($id: String!) {
     getCustomer(id: $id) {
       name
@@ -27,7 +27,7 @@ export const GET_CUSTOMER = gql`
   }
 `;
 
-export const ADD_CUSTOMER = gql`
+export const ADD_ORDER = gql`
   mutation addCustomer($input: CustomerInput!) {
     addCustomer(input: $input) {
       name

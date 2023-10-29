@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="w-screen border-b-2 flex flex-col md:flex-row  justify-between p-2 px-8 items-center">
+    <nav className="w-screen border-b-2 sticky top-0 flex flex-col md:flex-row  justify-between p-2 px-8 items-center">
       <img src={"/gso-logo.png"} alt="GSO Logo" className="w-16" />
       <div className="flex flex-col md:flex-row items-center justify-between w-1/2">
       <Link to="/"><button>Home</button></Link>
