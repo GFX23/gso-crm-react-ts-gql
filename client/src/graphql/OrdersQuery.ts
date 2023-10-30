@@ -9,23 +9,58 @@ export const GET_ALL_ORDER_NAMES = gql`
 }
 `;
 
-export const GET_ORDER = gql`
-  query getCustomer($id: String!) {
-    getCustomer(id: $id) {
-      name
+export const GET_ALL_ORDERS = gql`
+  query getAllOrders {
+    getAllOrders {
+    id
+    name
+    customer
+    delivery
+    items {
       id
-      street
-      city
-      zipcode
-      state
-      vatCode
-      contactName
-      email
-      phone
-      website
+      name
+      status
+      price
+      quantity
     }
+    operations {
+      machining {
+        state
+        date
+      }
+      welding {
+        state
+        date
+      }
+      heatTreat {
+        state
+        date
+      }
+      grinding {
+        state
+        date
+      }
+      painting {
+        state
+        date
+      }
+      assembly {
+        state
+        date
+      }
+      packaging {
+        state
+        date
+      }
+      shipping {
+        state
+        date
+      }
+    }
+    price
+    status
   }
-`;
+}`;
 
 export const ADD_ORDER = gql`
   mutation addCustomer($input: CustomerInput!) {
@@ -39,9 +74,9 @@ export const ADD_ORDER = gql`
   }
 `;
 
-export const DELETE_CUSTOMER = gql`
-  mutation deleteCustomer($id: String!) {
-    deleteCustomer(id: $id) {
+export const DELETE_ORDER = gql`
+  mutation deleteOrder($id: String!) {
+    deleteOrder(id: $id) {
       id
       name
     }

@@ -71,6 +71,7 @@ type Operation {
   type Mutation {
     addCustomer(input: CustomerInput!): Customer
     deleteCustomer(id: String!): Customer
+    deleteOrder(id: String!): Order
   }
 `;
 export default Schema; 

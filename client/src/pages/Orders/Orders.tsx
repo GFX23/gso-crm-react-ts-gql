@@ -1,11 +1,12 @@
 import React from "react";
-import { GET_ALL_ORDER_NAMES } from "../../graphql/OrdersQuery";
+import { GET_ALL_ORDERS } from "../../graphql/OrdersQuery";
 import { useQuery } from "@apollo/client";
 import { Link, Outlet } from "react-router-dom";
 import { Order } from "../../types/types";
+import OrderCard from "./components/OrderCard";
 
 export const Orders: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_ALL_ORDER_NAMES);
+  const { loading, error, data } = useQuery(GET_ALL_ORDERS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
@@ -16,13 +17,7 @@ export const Orders: React.FC = () => {
         <Link to={`/orders/addOrder`}>
           <button className="w-full bg-blue-200">Přidej zákázku</button>
         </Link>
-        {data
-          ? data.getAllOrders.map((order: Order) => (
-              <Link to={`/orders/${order.id}`} key={order.id}>
-                <button className="w-full">{order.name}</button>
-              </Link>
-            ))
-          : null}
+        {data ? data.getAllOrders.map((order: Order) => <OrderCard orderData={order} key={order.id} />) : null}
       </div>
       <Outlet />
     </div>

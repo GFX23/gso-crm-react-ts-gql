@@ -1,47 +1,54 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_CUSTOMER, GET_ALL_CUSTOMERS, DELETE_CUSTOMER } from "../../../graphql/CustomersQuery";
+import { useMutation } from "@apollo/client";
+import { GET_ALL_ORDER_NAMES, DELETE_ORDER } from "../../../graphql/OrdersQuery";
+import type { Order } from "../../../types/types";
+import { useState } from "react";
 
-const CustomerDetail: React.FC = () => {
+type OrderProps = {
+  orderData: Order;
+};
 
-  // routing variables
-  const navigate = useNavigate();
-  const { customerId } = useParams<{ customerId: string }>();
+const OrderCard: React.FC<OrderProps> = ({orderData}) => {
+  const [show, setShow] = useState(false);
+  const {name, customer, delivery, operations, status, price, items, id} = orderData
 
-  // getCustomer query 
-  const { loading, error, data } = useQuery(GET_CUSTOMER, {
-    variables: { id: customerId },});
-
-  // deleteCustomer mutation
-  const [deleteCustomer, { loading: deleteLoading, error: deleteError }] = useMutation(DELETE_CUSTOMER, {
-    refetchQueries: [{ query: GET_ALL_CUSTOMERS }]})
+  // deleteOrder mutation
+  const [deleteOrder, { loading, error }] = useMutation(DELETE_ORDER, {
+    refetchQueries: [{ query: GET_ALL_ORDER_NAMES }]})
 
   //loaders & errors
-  if (loading || deleteLoading) return <p>Loading...</p>;
-  if (error || deleteError) return <p>Error : {error?.message || deleteError?.message}</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error?.message}</p>;
 
   //handle delete
   const handleDelete = async () => {
-    await deleteCustomer({variables: {id: customerId}});
-    navigate('/customers');
+    await deleteOrder({variables: {id: id}});
     };
+    console.log(operations)
+    console.log(items)
 
   return (
-    <div>
-      <h2>Customer Details</h2>
-      <p>{data.getCustomer.name}</p>
-      <p>{data.getCustomer.street}</p>
-      <p>{data.getCustomer.city}</p>
-      <p>{data.getCustomer.zipcode}</p>
-      <p>{data.getCustomer.state}</p>
-      <p>{data.getCustomer.vatCode}</p>
-      <p>{data.getCustomer.contactName}</p>
-      <p>{data.getCustomer.email}</p>
-      <p>{data.getCustomer.phone}</p>
-      <p>{data.getCustomer.website}</p>
-      <button onClick={handleDelete}>Delete</button>
+    <>
+    <div className="w-full flex flex-col justify-between p-1 border-gray-100 rounded-lg border-2 items-center">
+      <div className="flex flex-row justify-between w-full">
+        <div className="flex flex-col">
+          <p><b>Název:</b> {name}</p>
+          <p><b>Zákazník:</b> {customer}</p>
+          <p><b>Datum dodání:</b> {delivery}</p>
+        </div>
+        <div className="flex flex-row gap-2 p-4">
+          <button className="w-8 p-1" onClick={() => setShow(!show)}>{show ? "-" : "+"}</button>
+          <button className="w-8 p-1" onClick={handleDelete}>X</button>
+        </div>
+      </div>
+      {show ? <div className="div">
+        <p><b>Status:</b> {status}</p>
+        <p><b>Cena:</b> {price}</p>
+        <p><b>Operace:</b> {}</p>
+        <div>{items.map(item => <p>{item.name}</p>)}</div>
+      </div> : null}
     </div>
+    </>
   );
 };
 
-export default CustomerDetail;
+export default OrderCard;

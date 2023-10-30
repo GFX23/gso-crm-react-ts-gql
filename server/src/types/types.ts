@@ -7,16 +7,16 @@ export type OrderItem = {
   quantity: string;
 };
 
-export type Operations = {
-  machining: {state: boolean, date: string}
-  welding: {state: boolean, date: string}
-  heatTreat: {state: boolean, date: string}
-  grinding: {state: boolean, date: string}
-  painting: {state: boolean, date: string}
-  assembly: {state: boolean, date: string}
-  packaging: {state: boolean, date: string}
-  shipping: {state: boolean, date: string}
-}
+export type Operations = [
+  {type:"machining", state: boolean, date: string},
+  {type:"welding", state: boolean, date: string},
+  {type:"heatTreat", state: boolean, date: string},
+  {type:"grinding", state: boolean, date: string},
+  {type:"painting", state: boolean, date: string},
+  {type:"assembly", state: boolean, date: string},
+  {type:"packaging", state: boolean, date: string},
+  {type:"shipping", state: boolean, date: string},
+]
 
 export type Order = {
   id: string;
