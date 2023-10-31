@@ -1,5 +1,4 @@
-import { Customer } from "../types/types";
-import type { Order } from "../types/types";
+import type { Order, OrderInput, Customer } from "../types/types";
 
 const Resolvers = {
   Query: {
@@ -32,6 +31,64 @@ const Resolvers = {
       };
       customersArray.push(newCustomer);
       return newCustomer;
+    },
+    addOrder: (_: any, args: { input: OrderInput}): Order => {
+      const newOrder: Order = {
+        id: (
+          Math.max(...orders.map((order) => parseInt(order.id))) + 1
+        ).toString(),
+        name: args.input.name,
+        customer: args.input.customer,
+        delivery: args.input.delivery,
+        status: "active",
+        price: args.input.price,
+        operations: [
+          {
+            type: "machining",
+            state: args.input.machining,
+            date: args.input.machiningDate,
+          },
+          {
+            type: "welding",
+            state: args.input.welding,
+            date: args.input.weldingDate,
+          },
+          {
+            type: "heatTreat",
+            state: args.input.heatTreat,
+            date: args.input.heatTreatDate,
+          },
+          {
+            type: "grinding",
+            state: args.input.grinding,
+            date: args.input.grindingDate,
+          },
+          {
+            type: "assembly",
+            state: args.input.assembly,
+            date: args.input.assemblyDate,
+          },
+          {
+            type: "packaging",
+            state: args.input.packaging,
+            date: args.input.packagingDate,
+          },
+          {
+            type: "shipping",
+            state: args.input.shipping,
+            date: args.input.shippingDate,
+          },
+        ],
+        items: [{
+          id: "1-1",
+          name: "High-Performance Laptop",
+          status: "In Stock",
+          price: "1000",
+          quantity: "1",
+        }],
+      };
+      orders.push(newOrder);
+      return newOrder;
     },
     deleteCustomer: (_: any, args: { id: string }): Customer | null => {
       const foundCustomer = customersArray.find(
@@ -175,7 +232,6 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-10-28" },
       { type: "heatTreat", state: true, date: "2023-10-29" },
       { type: "grinding", state: false, date: "2023-10-30" },
-      { type: "painting", state: false, date: "2023-10-31" },
       { type: "assembly", state: true, date: "2023-11-01" },
       { type: "packaging", state: true, date: "2023-11-02" },
       { type: "shipping", state: true, date: "2023-11-03" },
@@ -209,7 +265,6 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-10-29" },
       { type: "heatTreat", state: false, date: "2023-10-30" },
       { type: "grinding", state: false, date: "2023-10-31" },
-      { type: "painting", state: true, date: "2023-11-01" },
       { type: "assembly", state: false, date: "2023-11-02" },
       { type: "packaging", state: true, date: "2023-11-03" },
       { type: "shipping", state: false, date: "2023-11-04" },
@@ -243,7 +298,6 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-10-30" },
       { type: "heatTreat", state: false, date: "2023-10-31" },
       { type: "grinding", state: false, date: "2023-11-01" },
-      { type: "painting", state: false, date: "2023-11-02" },
       { type: "assembly", state: true, date: "2023-11-03" },
       { type: "packaging", state: false, date: "2023-11-04" },
       { type: "shipping", state: true, date: "2023-11-05" },
@@ -277,7 +331,6 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-10-31" },
       { type: "heatTreat", state: false, date: "2023-11-01" },
       { type: "grinding", state: true, date: "2023-11-02" },
-      { type: "painting", state: false, date: "2023-11-03" },
       { type: "assembly", state: false, date: "2023-11-04" },
       { type: "packaging", state: false, date: "2023-11-05" },
       { type: "shipping", state: true, date: "2023-11-06" },
@@ -311,7 +364,6 @@ export let orders: Order[] = [
       { type: "welding", state: true, date: "2023-11-01" },
       { type: "heatTreat", state: false, date: "2023-11-02" },
       { type: "grinding", state: false, date: "2023-11-03" },
-      { type: "painting", state: false, date: "2023-11-04" },
       { type: "assembly", state: false, date: "2023-11-05" },
       { type: "packaging", state: false, date: "2023-11-06" },
       { type: "shipping", state: true, date: "2023-11-07" },
@@ -345,7 +397,6 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-11-02" },
       { type: "heatTreat", state: false, date: "2023-11-03" },
       { type: "grinding", state: false, date: "2023-11-04" },
-      { type: "painting", state: false, date: "2023-11-05" },
       { type: "assembly", state: false, date: "2023-11-06" },
       { type: "packaging", state: false, date: "2023-11-07" },
       { type: "shipping", state: true, date: "2023-11-08" },
@@ -379,7 +430,6 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-11-03" },
       { type: "heatTreat", state: false, date: "2023-11-04" },
       { type: "grinding", state: false, date: "2023-11-05" },
-      { type: "painting", state: false, date: "2023-11-06" },
       { type: "assembly", state: false, date: "2023-11-07" },
       { type: "packaging", state: false, date: "2023-11-08" },
       { type: "shipping", state: true, date: "2023-11-09" },

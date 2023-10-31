@@ -27,6 +27,27 @@ input CustomerInput {
   website: String!
 }
 
+input OrderInput {
+  name: String!
+  customer: String!
+  delivery: String!
+  price: String!
+  machining: Boolean!
+  welding: Boolean!
+  heatTreat: Boolean!
+  grinding: Boolean!
+  assembly: Boolean!
+  packaging: Boolean!
+  shipping: Boolean!
+  machiningDate: String!
+  weldingDate: String!
+  heatTreatDate: String!
+  grindingDate: String!
+  assemblyDate: String!
+  packagingDate: String!
+  shippingDate: String!
+}
+
 type Order {
   id: String
   name: String
@@ -60,6 +81,7 @@ type Operations {
   }
   type Mutation {
     addCustomer(input: CustomerInput!): Customer
+    addOrder(input: OrderInput!): Order
     deleteCustomer(id: String!): Customer
     deleteOrder(id: String!): Order
   }

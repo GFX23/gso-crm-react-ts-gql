@@ -31,19 +31,15 @@ export const GET_ALL_ORDERS = gql`
         quantity
       }
     }
-}`;
+  }`;
 
 export const ADD_ORDER = gql`
-  mutation addCustomer($input: CustomerInput!) {
-    addCustomer(input: $input) {
-      name
-      email
+  mutation addOrder($input: OrderInput!) {
+    addOrder(input: $input) {
       id
-      contactName
-      city
+      name
     }
-  }
-`;
+  }`;
 
 export const DELETE_ORDER = gql`
   mutation deleteOrder($id: String!) {
