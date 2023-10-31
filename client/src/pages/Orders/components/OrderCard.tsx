@@ -1,7 +1,8 @@
 import { useMutation } from "@apollo/client";
-import { GET_ALL_ORDER_NAMES, DELETE_ORDER } from "../../../graphql/OrdersQuery";
-import type { Order } from "../../../types/types";
+import { GET_ALL_ORDERS, DELETE_ORDER } from "../../../graphql/OrdersQuery";
+import type { Operations, Order } from "../../../types/types";
 import { useState } from "react";
+import ProgressBar from "../../../components/ProgressBar";
 
 type OrderProps = {
   orderData: Order;
@@ -13,7 +14,7 @@ const OrderCard: React.FC<OrderProps> = ({orderData}) => {
 
   // deleteOrder mutation
   const [deleteOrder, { loading, error }] = useMutation(DELETE_ORDER, {
-    refetchQueries: [{ query: GET_ALL_ORDER_NAMES }]})
+    refetchQueries: [{ query: GET_ALL_ORDERS }]})
 
   //loaders & errors
   if (loading) return <p>Loading...</p>;
@@ -25,6 +26,10 @@ const OrderCard: React.FC<OrderProps> = ({orderData}) => {
     };
     console.log(operations)
     console.log(items)
+
+  // compute progress
+    const progressValue = operations.filter(oper => oper.state !== true).length/8*100
+        console.log(progressValue)
 
   return (
     <>
@@ -43,9 +48,12 @@ const OrderCard: React.FC<OrderProps> = ({orderData}) => {
       {show ? <div className="div">
         <p><b>Status:</b> {status}</p>
         <p><b>Cena:</b> {price}</p>
-        <p><b>Operace:</b> {}</p>
-        <div>{items.map(item => <p>{item.name}</p>)}</div>
+        <p><b>Operace:</b> </p>
+        <div className="flex flex-row gap-4">{operations.map(op => (op.state ? <p>{op.type}</p> : null))}</div>
+        <p><b>Dílce:</b> </p>
+        <div className="flex flex-row gap-4">{items.map(item => (<><p>Název dílce: {item.name}</p><p>Počet dílců: {item.price}</p></>))}</div>
       </div> : null}
+      <ProgressBar value={progressValue} />
     </div>
     </>
   );

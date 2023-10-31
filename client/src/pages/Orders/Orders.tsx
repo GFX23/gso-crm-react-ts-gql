@@ -13,7 +13,7 @@ export const Orders: React.FC = () => {
 
   return (
     <div className="flex flex-col md:flex-row max-w-4xl pt-2 h-full w-screen mx-auto border-x-2">
-      <div className="w-full px-2">
+      <div className="w-full h-3/4 px-2 overflow-auto">
         <Link to={`/orders/addOrder`}>
           <button className="w-full bg-blue-200">Přidej zákázku</button>
         </Link>

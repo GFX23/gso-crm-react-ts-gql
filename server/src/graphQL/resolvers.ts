@@ -173,12 +173,12 @@ export let orders: Order[] = [
     operations: [
       { type: "machining", state: true, date: "2023-10-27" },
       { type: "welding", state: false, date: "2023-10-28" },
-      { type: "heatTreat", state: false, date: "2023-10-29" },
+      { type: "heatTreat", state: true, date: "2023-10-29" },
       { type: "grinding", state: false, date: "2023-10-30" },
       { type: "painting", state: false, date: "2023-10-31" },
-      { type: "assembly", state: false, date: "2023-11-01" },
-      { type: "packaging", state: false, date: "2023-11-02" },
-      { type: "shipping", state: false, date: "2023-11-03" },
+      { type: "assembly", state: true, date: "2023-11-01" },
+      { type: "packaging", state: true, date: "2023-11-02" },
+      { type: "shipping", state: true, date: "2023-11-03" },
     ],
     items: [
       {
@@ -209,9 +209,9 @@ export let orders: Order[] = [
       { type: "welding", state: false, date: "2023-10-29" },
       { type: "heatTreat", state: false, date: "2023-10-30" },
       { type: "grinding", state: false, date: "2023-10-31" },
-      { type: "painting", state: false, date: "2023-11-01" },
+      { type: "painting", state: true, date: "2023-11-01" },
       { type: "assembly", state: false, date: "2023-11-02" },
-      { type: "packaging", state: false, date: "2023-11-03" },
+      { type: "packaging", state: true, date: "2023-11-03" },
       { type: "shipping", state: false, date: "2023-11-04" },
     ],
     items: [
@@ -244,9 +244,9 @@ export let orders: Order[] = [
       { type: "heatTreat", state: false, date: "2023-10-31" },
       { type: "grinding", state: false, date: "2023-11-01" },
       { type: "painting", state: false, date: "2023-11-02" },
-      { type: "assembly", state: false, date: "2023-11-03" },
+      { type: "assembly", state: true, date: "2023-11-03" },
       { type: "packaging", state: false, date: "2023-11-04" },
-      { type: "shipping", state: false, date: "2023-11-05" },
+      { type: "shipping", state: true, date: "2023-11-05" },
     ],
     items: [
       {
@@ -276,11 +276,11 @@ export let orders: Order[] = [
       { type: "machining", state: true, date: "2023-10-30" },
       { type: "welding", state: false, date: "2023-10-31" },
       { type: "heatTreat", state: false, date: "2023-11-01" },
-      { type: "grinding", state: false, date: "2023-11-02" },
+      { type: "grinding", state: true, date: "2023-11-02" },
       { type: "painting", state: false, date: "2023-11-03" },
       { type: "assembly", state: false, date: "2023-11-04" },
       { type: "packaging", state: false, date: "2023-11-05" },
-      { type: "shipping", state: false, date: "2023-11-06" },
+      { type: "shipping", state: true, date: "2023-11-06" },
     ],
     items: [
       {
@@ -308,13 +308,13 @@ export let orders: Order[] = [
     price: "500",
     operations: [
       { type: "machining", state: true, date: "2023-10-31" },
-      { type: "welding", state: false, date: "2023-11-01" },
+      { type: "welding", state: true, date: "2023-11-01" },
       { type: "heatTreat", state: false, date: "2023-11-02" },
       { type: "grinding", state: false, date: "2023-11-03" },
       { type: "painting", state: false, date: "2023-11-04" },
       { type: "assembly", state: false, date: "2023-11-05" },
       { type: "packaging", state: false, date: "2023-11-06" },
-      { type: "shipping", state: false, date: "2023-11-07" },
+      { type: "shipping", state: true, date: "2023-11-07" },
     ],
     items: [
       {
@@ -348,7 +348,7 @@ export let orders: Order[] = [
       { type: "painting", state: false, date: "2023-11-05" },
       { type: "assembly", state: false, date: "2023-11-06" },
       { type: "packaging", state: false, date: "2023-11-07" },
-      { type: "shipping", state: false, date: "2023-11-08" },
+      { type: "shipping", state: true, date: "2023-11-08" },
     ],
     items: [
       {
@@ -382,7 +382,7 @@ export let orders: Order[] = [
       { type: "painting", state: false, date: "2023-11-06" },
       { type: "assembly", state: false, date: "2023-11-07" },
       { type: "packaging", state: false, date: "2023-11-08" },
-      { type: "shipping", state: false, date: "2023-11-09" },
+      { type: "shipping", state: true, date: "2023-11-09" },
     ],
     items: [
       {

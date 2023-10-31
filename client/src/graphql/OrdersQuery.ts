@@ -3,63 +3,34 @@ import { gql } from "@apollo/client";
 export const GET_ALL_ORDER_NAMES = gql`
   query getAllCustomers {
     getAllOrders {
-    id
-    name
+      id
+      name
+    }
   }
-}
 `;
 
 export const GET_ALL_ORDERS = gql`
   query getAllOrders {
     getAllOrders {
-    id
-    name
-    customer
-    delivery
-    items {
       id
       name
+      customer
+      delivery
       status
       price
-      quantity
-    }
-    operations {
-      machining {
+      operations {
+        type
         state
         date
       }
-      welding {
-        state
-        date
-      }
-      heatTreat {
-        state
-        date
-      }
-      grinding {
-        state
-        date
-      }
-      painting {
-        state
-        date
-      }
-      assembly {
-        state
-        date
-      }
-      packaging {
-        state
-        date
-      }
-      shipping {
-        state
-        date
+      items {
+        id
+        name
+        status
+        price
+        quantity
       }
     }
-    price
-    status
-  }
 }`;
 
 export const ADD_ORDER = gql`

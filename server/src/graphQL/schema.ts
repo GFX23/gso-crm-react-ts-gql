@@ -34,7 +34,7 @@ type Order {
   delivery: String
   status: String
   price: String
-  operations: Operations
+  operations: [Operations]
   items: [OrderItem]
 }
 
@@ -47,17 +47,7 @@ type OrderItem {
 }
 
 type Operations {
-  machining: Operation
-  welding: Operation
-  heatTreat: Operation
-  grinding: Operation
-  painting: Operation
-  assembly: Operation
-  packaging: Operation
-  shipping: Operation
-}
-
-type Operation {
+  type: String  
   state: Boolean
   date: String
 }
