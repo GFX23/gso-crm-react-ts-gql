@@ -32,7 +32,6 @@ input OrderInput {
   customer: String!
   delivery: String!
   price: String!
-  machining: Boolean!
   welding: Boolean!
   heatTreat: Boolean!
   grinding: Boolean!
@@ -40,6 +39,7 @@ input OrderInput {
   packaging: Boolean!
   shipping: Boolean!
   machiningDate: String!
+  machiningUntil: String!
   weldingDate: String!
   heatTreatDate: String!
   grindingDate: String!
@@ -55,6 +55,7 @@ type Order {
   delivery: String
   status: String
   price: String
+  machining: Machining
   operations: [Operations]
   items: [OrderItem]
 }
@@ -71,6 +72,11 @@ type Operations {
   type: String  
   state: Boolean
   date: String
+}
+
+type Machining {
+  date: String
+  until: String
 }
  
   #handle user commands

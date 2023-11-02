@@ -9,6 +9,19 @@ export const GET_ALL_ORDER_NAMES = gql`
   }
 `;
 
+export const GET_ORDERS_FOR_PLANNER = gql`
+  query getAllOrders {
+    getAllOrders {
+      id
+      name
+      machining {
+        date
+        until
+      }
+    }
+  }
+`
+
 export const GET_ALL_ORDERS = gql`
   query getAllOrders {
     getAllOrders {

@@ -42,12 +42,8 @@ const Resolvers = {
         delivery: args.input.delivery,
         status: "active",
         price: args.input.price,
+        machining: {date: args.input.machiningDate, until: args.input.machiningUntil},
         operations: [
-          {
-            type: "machining",
-            state: args.input.machining,
-            date: args.input.machiningDate,
-          },
           {
             type: "welding",
             state: args.input.welding,
@@ -227,8 +223,8 @@ export let orders: Order[] = [
     delivery: "2023-10-27",
     status: "Active",
     price: "1200",
+    machining: {date: "2023-10-26", until: "2023-10-27"},
     operations: [
-      { type: "machining", state: true, date: "2023-10-27" },
       { type: "welding", state: false, date: "2023-10-28" },
       { type: "heatTreat", state: true, date: "2023-10-29" },
       { type: "grinding", state: false, date: "2023-10-30" },
@@ -260,8 +256,8 @@ export let orders: Order[] = [
     delivery: "2023-10-28",
     status: "Active",
     price: "800",
+    machining: {date: "2023-10-26", until: "2023-10-27"},
     operations: [
-      { type: "machining", state: true, date: "2023-10-28" },
       { type: "welding", state: false, date: "2023-10-29" },
       { type: "heatTreat", state: false, date: "2023-10-30" },
       { type: "grinding", state: false, date: "2023-10-31" },
@@ -293,8 +289,8 @@ export let orders: Order[] = [
     delivery: "2023-10-29",
     status: "Active",
     price: "1500",
+    machining: {date: "2023-11-06", until: "2023-11-08"},
     operations: [
-      { type: "machining", state: true, date: "2023-10-29" },
       { type: "welding", state: false, date: "2023-10-30" },
       { type: "heatTreat", state: false, date: "2023-10-31" },
       { type: "grinding", state: false, date: "2023-11-01" },
@@ -326,8 +322,8 @@ export let orders: Order[] = [
     delivery: "2023-10-30",
     status: "Active",
     price: "2000",
+    machining: {date: "2023-11-22", until: "2023-11-27"},
     operations: [
-      { type: "machining", state: true, date: "2023-10-30" },
       { type: "welding", state: false, date: "2023-10-31" },
       { type: "heatTreat", state: false, date: "2023-11-01" },
       { type: "grinding", state: true, date: "2023-11-02" },
@@ -359,8 +355,8 @@ export let orders: Order[] = [
     delivery: "2023-10-31",
     status: "Active",
     price: "500",
+    machining: {date: "2023-11-16", until: "2023-11-17"},
     operations: [
-      { type: "machining", state: true, date: "2023-10-31" },
       { type: "welding", state: true, date: "2023-11-01" },
       { type: "heatTreat", state: false, date: "2023-11-02" },
       { type: "grinding", state: false, date: "2023-11-03" },
@@ -392,8 +388,8 @@ export let orders: Order[] = [
     delivery: "2023-11-01",
     status: "Active",
     price: "900",
+    machining: {date: "2023-11-02", until: "2023-11-04"},
     operations: [
-      { type: "machining", state: true, date: "2023-11-01" },
       { type: "welding", state: false, date: "2023-11-02" },
       { type: "heatTreat", state: false, date: "2023-11-03" },
       { type: "grinding", state: false, date: "2023-11-04" },
@@ -425,8 +421,8 @@ export let orders: Order[] = [
     delivery: "2023-11-02",
     status: "Active",
     price: "700",
+    machining: {date: "2023-11-20", until: "2023-11-22"},
     operations: [
-      { type: "machining", state: true, date: "2023-11-02" },
       { type: "welding", state: false, date: "2023-11-03" },
       { type: "heatTreat", state: false, date: "2023-11-04" },
       { type: "grinding", state: false, date: "2023-11-05" },

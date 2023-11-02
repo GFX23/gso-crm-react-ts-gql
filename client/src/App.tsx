@@ -18,6 +18,7 @@ const App: React.FC = () => {
           <Route path="/" Component={Home} />
           <Route path="/orders" Component={Orders} />
           <Route path="/customers" Component={Customers}>
+            <Route index element={<CustomerForm />} />
             <Route path={"/customers/addCustomer"} Component={CustomerForm} />
             <Route path={`/customers/:customerId`} Component={CustomerDetail} />
           </Route>

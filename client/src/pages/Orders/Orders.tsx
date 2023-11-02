@@ -15,8 +15,8 @@ export const Orders: React.FC = () => {
   const customerNames = customerData.getAllCustomers.map((customer: Customer) => customer.name)
 
   return (
-    <div className="flex flex-col md:flex-row max-w-4xl pt-2 h-full w-screen mx-auto border-x-2">
-      <div className="w-full h-3/4 px-2 overflow-auto">
+    <div className="coltainer md:flex-row max-w-4xl pt-2 h-full w-screen mx-auto border-x-2">
+      <div className="coltainer w-full h-full px-2 overflow-auto">
       <OrderForm customerNames={customerNames} />
         {data ? data.getAllOrders.map((order: Order) => <OrderCard orderData={order} key={order.id} />) : null}
       </div>

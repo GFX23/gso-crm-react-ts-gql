@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.6",
+    "@fullcalendar/core": "^6.1.9",
+    "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/interaction": "^6.1.9",
+    "@fullcalendar/react": "^6.1.9",
     "autoprefixer": "^10.4.16",
     "graphql": "^16.8.1",
     "postcss": "^8.4.31",

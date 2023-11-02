@@ -29,19 +29,25 @@ const CustomerDetail: React.FC = () => {
   const { name, street, city, zipcode, state, vatCode, contactName, email, phone, website } = data.getCustomer;
 
   return (
-    <div>
-      <h2>Customer Details</h2>
-      <p>{name}</p>
-      <p>{street}</p>
-      <p>{city}</p>
-      <p>{zipcode}</p>
-      <p>{state}</p>
-      <p>{vatCode}</p>
-      <p>{contactName}</p>
-      <p>{email}</p>
-      <p>{phone}</p>
-      <p>{website}</p>
-      <button onClick={handleDelete}>Delete</button>
+    <div className="coltainer border-shadow w-full mx-2 p-2 ">
+      <h2>Karta zákazníka</h2>
+      <div className="rowtainer-center-between border-shadow p-2">
+        <div className="coltainer">
+          <p><b>Jméno: </b> {name}</p>
+          <p><b>Ulice: </b>{street}</p>
+          <p><b>Město: </b>{city}</p>
+          <p><b>Stát: </b>{state}</p>
+          <p><b>PSČ: </b>{zipcode}</p>
+          <p><b>IČO: </b>{vatCode}</p>
+        </div>
+        <div className="coltainer">
+          <p><b>Kontaktní osoba: </b>{contactName}</p>
+          <p><b>E-mail: </b>{email}</p>
+          <p><b>Telefon: </b>{phone}</p>
+          <p><b>Website: </b><a href={website}>{website}</a></p>
+        </div>
+      </div>
+          <button onClick={handleDelete}>Smazat</button>
     </div>
   );
 };

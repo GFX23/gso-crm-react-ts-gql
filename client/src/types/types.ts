@@ -7,7 +7,6 @@ export type OrderItem = {
 };
 
 export type Operations = [
-  { type: "machining"; state: boolean; date: string },
   { type: "welding"; state: boolean; date: string },
   { type: "heatTreat"; state: boolean; date: string },
   { type: "grinding"; state: boolean; date: string },
@@ -21,7 +20,6 @@ export type OrderInput = {
   customer: string;
   delivery: string;
   price: string;
-  machining: boolean;
   welding: boolean;
   heatTreat: boolean;
   grinding: boolean;
@@ -29,6 +27,7 @@ export type OrderInput = {
   packaging: boolean;
   shipping: boolean;
   machiningDate: string;
+  machiningUntil: string;
   weldingDate: string;
   heatTreatDate: string;
   grindingDate: string;
@@ -44,9 +43,17 @@ export type Order = {
   delivery: string;
   status: string;
   price: string;
+  machining:{date: string, until: string }
   operations: Operations;
   items: OrderItem[] | [];
 };
+
+export type OrderForPlanner = {
+  id: string;
+  name: string;
+  machining: { date: string; until: string };
+};
+
 export type Customer = {
   id: string;
   name: string;
