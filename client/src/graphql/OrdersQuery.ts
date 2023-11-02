@@ -25,26 +25,30 @@ export const GET_ORDERS_FOR_PLANNER = gql`
 export const GET_ALL_ORDERS = gql`
   query getAllOrders {
     getAllOrders {
+    id
+    name
+    machining {
+      date
+      until
+    }
+    customer
+    delivery
+    items {
       id
       name
-      customer
-      delivery
       status
       price
-      operations {
-        type
-        state
-        date
-      }
-      items {
-        id
-        name
-        status
-        price
-        quantity
-      }
+      quantity
     }
-  }`;
+    operations {
+      type
+      state
+      date
+    }
+    price
+    status
+  }
+}`;
 
 export const ADD_ORDER = gql`
   mutation addOrder($input: OrderInput!) {

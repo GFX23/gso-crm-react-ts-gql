@@ -55,5 +55,9 @@
     @apply border rounded-md shadow-lg;
   }
 
+  .page-container {
+    @apply max-w-4xl pt-2 h-full w-screen mx-auto border-x-2 overflow-auto;
+  }
+
 
 }

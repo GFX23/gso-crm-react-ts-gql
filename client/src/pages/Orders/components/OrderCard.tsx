@@ -1,8 +1,9 @@
-import { useMutation } from "@apollo/client";
 import { GET_ALL_ORDERS, DELETE_ORDER } from "../../../graphql/OrdersQuery";
-import type { Operations, Order } from "../../../types/types";
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import ProgressBar from "../../../components/ProgressBar";
+
+import type { Order } from "../../../types/types";
 
 type OrderProps = {
   orderData: Order;
@@ -10,7 +11,9 @@ type OrderProps = {
 
 const OrderCard: React.FC<OrderProps> = ({orderData}) => {
   const [show, setShow] = useState(false);
-  const {name, customer, delivery, operations, status, price, items, id} = orderData
+  const {name, customer, delivery, machining, operations, status, price, items, id} = orderData
+
+  console.log(orderData)
 
   const [deleteOrder, { loading, error }] = useMutation(DELETE_ORDER, {
     refetchQueries: [{ query: GET_ALL_ORDERS }]})
@@ -28,25 +31,29 @@ const OrderCard: React.FC<OrderProps> = ({orderData}) => {
 
   return (
     <>
-    <div className="w-full flex flex-col justify-between p-2 border-gray-100 rounded-lg border-2 items-center">
+    <div className="coltainer-center-between w-full p-2 border-shadow">
       <div className="flex flex-row justify-between w-full">
-        <div className="coltainer">
-          <p><b>Název:</b> {name}</p>
+        <div className="coltainer gap-1">
+          <p><b>Název zakázky:</b> {name}</p>
           <p><b>Zákazník:</b> {customer}</p>
           <p><b>Datum dodání:</b> {delivery}</p>
+        </div>
+        <div>
+          <p><b>Obrábění start:</b> {machining?.date}</p>
+          <p><b>Obrábění konec:</b> {machining?.until}</p>
         </div>
         <div className="rowtainer p-4">
           <button className="w-8 p-1" onClick={() => setShow(!show)}>{show ? "-" : "+"}</button>
           <button className="w-8 p-1" onClick={handleDelete}>X</button>
         </div>
       </div>
-      {show ? <div>
-        <p><b>Status:</b> {status}</p>
-        <p><b>Cena:</b> {price}</p>
-        <p><b>Operace:</b> </p>
-        <div className="rowtainer">{operations.map(op => (op.state ? <p>{op.type}</p> : null))}</div>
+      {show ? <div className="coltainer gap-1 p-2">
+      <div className="border"></div>
+        <p><b>Cena: </b> {price}</p>
+        <div className="rowtainer"><p><b>Operace: </b> </p>{operations.map(op => (op.state ? <p>{op.type}</p> : null))}</div>
+        <div className="border"></div>
         <p><b>Dílce:</b> </p>
-        <div className="rowtainer">{items.map(item => (<><p>Název dílce: {item.name}</p><p>Počet dílců: {item.price}</p></>))}</div>
+        <div className="coltainer">{items.map(item => (<><p><b>Název dílce:</b> {item.name} <b>Počet dílců:</b> {item.quantity}</p></>))}</div>
       </div> : null}
       <ProgressBar value={progressValue} />
     </div>
