@@ -1,0 +1,63 @@
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model OrderItem {
+  id       String @id @default(uuid())
+  name     String
+  status   String
+  price    String
+  quantity String
+  order    Order @relation(fields: [orderId], references: [id])
+  orderId  String
+}
+
+model Operation {
+  id       String   @id @default(uuid())
+  type     String
+  state    Boolean
+  date     String
+  order    Order   @relation(fields: [orderId], references: [id])
+  orderId  String @unique
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  name        String
+  customer    String
+  customerId  String
+  delivery    String
+  status      String
+  price       String
+  machining   Machining?
+  operations  Operation[]
+  items       OrderItem[]
+}
+
+model Machining {
+  id       String   @id @default(uuid())
+  date     String
+  until    String
+  order    Order    @relation(fields: [orderId], references: [id])
+  orderId  String @unique
+}
+
+model Customer {
+  id          String   @id @default(uuid())
+  name        String
+  street      String
+  city        String
+  zipcode     String
+  state       String
+  vatCode     String
+  contactName String
+  email       String
+  phone       String
+  website     String
+}

@@ -1,4 +1,8 @@
 import type { Order, OrderInput, Customer } from "../types/types";
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+
+console.log(prisma.$connect)
 
 const Resolvers = {
   Query: {
@@ -31,6 +35,21 @@ const Resolvers = {
       };
       customersArray.push(newCustomer);
       return newCustomer;
+    },
+    updateOrderDate: (_: any, args: { id: string, date: string, until: string }): Order | null => {
+      const foundOrder = orders.find((order) => order.id === args.id);
+      if (foundOrder) {
+        foundOrder.machining.date = args.date;
+        foundOrder.machining.until = args.until;
+      }
+      // Update orders array with updated order
+      orders = orders.map((order) => {
+        if (order.id === args.id && foundOrder) {
+          return foundOrder;
+        }
+        return order;
+      });
+      return foundOrder || null;
     },
     addOrder: (_: any, args: { input: OrderInput}): Order => {
       const newOrder: Order = {
@@ -233,6 +252,34 @@ export let orders: Order[] = [
       { type: "shipping", state: true, date: "2023-11-03" },
     ],
     items: [
+      {
+        id: "1-1",
+        name: "Peltonka",
+        status: "Active",
+        price: "65000",
+        quantity: "1",
+      },
+      {
+        id: "1-1",
+        name: "Peltonka",
+        status: "Active",
+        price: "65000",
+        quantity: "1",
+      },
+      {
+        id: "1-1",
+        name: "Peltonka",
+        status: "Active",
+        price: "65000",
+        quantity: "1",
+      },
+      {
+        id: "1-1",
+        name: "Peltonka",
+        status: "Active",
+        price: "65000",
+        quantity: "1",
+      },
       {
         id: "1-1",
         name: "Peltonka",

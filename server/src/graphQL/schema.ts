@@ -90,6 +90,7 @@ type Machining {
     addOrder(input: OrderInput!): Order
     deleteCustomer(id: String!): Customer
     deleteOrder(id: String!): Order
+    updateOrderDate(id: String!, date: String!, until: String!): Order
   }
 `;
 export default Schema; 

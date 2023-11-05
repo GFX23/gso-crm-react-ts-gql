@@ -51,6 +51,7 @@ export type Order = {
 export type OrderForPlanner = {
   id: string;
   name: string;
+  delivery: string;
   machining: { date: string; until: string };
 };
 
