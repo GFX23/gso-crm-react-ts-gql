@@ -1,8 +1,7 @@
 import type { Order, OrderInput, Customer } from "../types/types";
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { connectToDatabase } from "../mongobase/mongoDB";
 
-console.log(prisma.$connect)
+connectToDatabase();
 
 const Resolvers = {
   Query: {
