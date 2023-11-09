@@ -9,6 +9,8 @@ const Customers: React.FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
+  console.log(data)
+
   return (
     <div className="coltainer md:flex-row page-container gap-0">
       <div className="w-56 p-2 ml-2 coltainer border-shadow items-center">

@@ -4,6 +4,7 @@ import Resolvers from "./graphql/resolvers";
 import express from "express";
 import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import http from "http";
+import { connectToServer } from "./mongobase/mongoDB";
 
 async function startApolloServer(schema: any, resolvers: any) {
   const app = express();
@@ -14,6 +15,14 @@ async function startApolloServer(schema: any, resolvers: any) {
     //tell Express to attach GraphQL functionality to the server
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   }) as any;
+
+  connectToServer((err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  })
+
   await server.start(); //start the GraphQL server.
   server.applyMiddleware({ app });
   await new Promise<void>((resolve) =>

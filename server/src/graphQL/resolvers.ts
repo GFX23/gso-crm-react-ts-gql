@@ -1,11 +1,13 @@
 import type { Order, OrderInput, Customer } from "../types/types";
-import { connectToDatabase } from "../mongobase/mongoDB";
+import { getDb } from "../mongobase/mongoDB";
+import { CustomerModel } from "../mongobase/models";
 
-connectToDatabase();
+const db = getDb();
 
 const Resolvers = {
   Query: {
-    getAllCustomers: (): Customer[] => customersArray,
+    //getAllCustomers: (): Customer[] => customersArray,
+    getAllCustomers: async (): Promise<Customer[]> => await CustomerModel.find({}),
     getCustomer: (_: any, args: { id: string }): Customer | null => {
       const foundCustomer = customersArray.find(
         (customer) => customer.id === args.id

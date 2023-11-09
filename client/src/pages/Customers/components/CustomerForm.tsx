@@ -39,8 +39,8 @@ const CustomerForm: React.FC = () => {
     <form className="rowtainer justify-center border-shadow w-full h-fit p-2 mx-2" onSubmit={handleSubmit(onSubmit)}>
       <div className="coltainer">
         {/* MAPPING LEFT SIDE OF THE FORM */}
-        {inputsLeft.map(input => (
-          <div className="rowtainer-center-end">
+        {inputsLeft.map((input, index) => (
+          <div key={index} className="rowtainer-center-end">
             <p><b>{input[0]}</b></p>
             {input[1]}
           </div>))}
@@ -48,8 +48,8 @@ const CustomerForm: React.FC = () => {
       </div>
       <div className="coltainer">
           {/* MAPPING RIGHT SIDE OF THE FORM */}
-        {inputsRight.map(input => (
-          <div className="rowtainer-center-end">
+        {inputsRight.map((input, index) => (
+          <div key={index} className="rowtainer-center-end">
             <p><b>{input[0]}</b></p>
             {input[1]}
           </div>))}
