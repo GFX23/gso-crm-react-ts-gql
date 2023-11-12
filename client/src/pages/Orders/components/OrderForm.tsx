@@ -2,6 +2,8 @@ import { ADD_ORDER, GET_ALL_ORDERS } from '../../../graphql/OrdersQuery';
 import { useMutation } from '@apollo/client';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
+import Loader from '../../Loading/Loading';
+import ErrorPage from '../../Error/Error';
 
 import type { OrderInput } from '../../../types/types';
 
@@ -31,8 +33,8 @@ const OrderForm: React.FC<OrderFormProps> = ({customerNames}) => {
 
   console.log(errors)
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
+  if (loading) return <Loader/>
+  if (error) return <ErrorPage error={"Nepodařilo se získat data!"}/>;
 
   const leftInputs = [
     ["Zákazník: ", <select {...register("customer", { required: true })}>

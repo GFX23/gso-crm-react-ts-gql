@@ -2,8 +2,10 @@ import { GET_ALL_ORDERS, DELETE_ORDER } from "../../../graphql/OrdersQuery";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import ProgressBar from "../../../components/ProgressBar";
+import ErrorPage from "../../Error/Error";
 
 import type { Order } from "../../../types/types";
+import Loader from "../../Loading/Loading";
 
 type OrderProps = {
   orderData: Order;
@@ -18,8 +20,8 @@ const OrderCard: React.FC<OrderProps> = ({orderData}) => {
   const [deleteOrder, { loading, error }] = useMutation(DELETE_ORDER, {
     refetchQueries: [{ query: GET_ALL_ORDERS }]})
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error?.message}</p>;
+  if (loading) return <Loader/>
+  if (error) return <ErrorPage error={"Nepodařilo se získat data!"}/>;
 
   const handleDelete = async () => {
     await deleteOrder({variables: {id: id}});
@@ -53,7 +55,7 @@ const OrderCard: React.FC<OrderProps> = ({orderData}) => {
         <div className="rowtainer"><p><b>Operace: </b> </p>{operations.map(op => (op.state ? <p>{op.type}</p> : null))}</div>
         <div className="border"></div>
         <p><b>Dílce:</b> </p>
-        <div className="coltainer">{items.map(item => (<><p><b>Název dílce:</b> {item.name} <b>Počet dílců:</b> {item.quantity}</p></>))}</div>
+        <div className="coltainer">{items.map((item, index) => (<div key={index}><p><b>Název dílce:</b> {item.name} <b>Počet dílců:</b> {item.quantity}</p></div>))}</div>
       </div> : null}
       <ProgressBar value={progressValue} />
     </div>

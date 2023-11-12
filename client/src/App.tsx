@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
 import CustomerDetail from "./pages/Customers/components/CustomerCard";
 import CustomerForm from "./pages/Customers/components/CustomerForm";
+import ErrorPage from "./pages/Error/Error";
 
 const App: React.FC = () => {
   return (
@@ -21,11 +22,12 @@ const App: React.FC = () => {
             <Route index element={<CustomerForm />} />
             <Route path={"/customers/addCustomer"} Component={CustomerForm} />
             <Route path={`/customers/:customerId`} Component={CustomerDetail} />
-          </Route>
-          <Route path="/planner" Component={Planner} />
-          <Route path="/todo" Component={Todo} />
-        </Routes>
-      </div>
+              </Route>
+              <Route path="/planner" Component={Planner} />
+              <Route path="/todo" Component={Todo} />
+              <Route path="*" element={<ErrorPage error={"Page not Found"} />} />
+            </Routes>
+          </div>
     </Router>
   );
 };

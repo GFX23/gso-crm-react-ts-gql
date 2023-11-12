@@ -2,12 +2,14 @@ import { GET_ALL_CUSTOMERS } from "../../graphql/CustomersQuery";
 import { useQuery } from "@apollo/client";
 import { Link, Outlet } from "react-router-dom";
 import type { Customer } from "../../types/types";
+import ErrorPage from "../Error/Error";
+import Loader from "../Loading/Loading";
 
 const Customers: React.FC = () => {
   const { loading, error, data } = useQuery(GET_ALL_CUSTOMERS);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
+  if (loading) return <Loader/>
+  if (error) return <ErrorPage error={"Nepodařilo se získat data!"}/>;
 
   console.log(data)
 

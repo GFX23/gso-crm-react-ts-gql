@@ -1,10 +1,10 @@
 import React from 'react';
+import Loader from '../Loading/Loading';
 
 const Home: React.FC = () => {
   return (
     <div>
-      <h1>Home Page</h1>
-      {/* Add your Home page content here */}
+      <Loader/>
     </div>
   );
 };

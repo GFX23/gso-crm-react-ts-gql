@@ -5,15 +5,19 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_ORDERS_FOR_PLANNER, UPDATE_ORDER_DATE } from '../../graphql/OrdersQuery';
 import type { OrderForPlanner } from '../../types/types';
 import { EventDropArg } from '@fullcalendar/core/index.js';
+import ErrorPage from '../Error/Error';
+import Loader from '../Loading/Loading';
 
 
 const Planner: React.FC = () => {
   // fetch order events from graphql
-   const { loading, error, data } = useQuery(GET_ORDERS_FOR_PLANNER);
-   const [updateOrderDate, {loading: mutLoad, error: mutError}] = useMutation(UPDATE_ORDER_DATE)
+   const { loading, error, data} = useQuery(GET_ORDERS_FOR_PLANNER);
+   const [updateOrderDate, {loading: mutLoad, error: mutError}] = useMutation(UPDATE_ORDER_DATE, {
+     refetchQueries: [{ query: GET_ORDERS_FOR_PLANNER }]
+   });
 
-    if (loading || mutLoad) return <p>Loading...</p>;
-    if (error || mutError) return <p>Error</p>;
+    if (loading || mutLoad) return <Loader/>
+    if (error || mutError) return <ErrorPage error={"Nepodařilo se získat data!"}/>;
 
     const events = data.getAllOrders.map((order: OrderForPlanner) => {
       return {
@@ -26,9 +30,10 @@ const Planner: React.FC = () => {
     })
 
     const handleEventDrop = (info: EventDropArg) => {
+      const {start, end, id} = info.event
       // Mutate the order date
       updateOrderDate({variables: 
-        {id: info.event.id, date: info.event.start?.toISOString().substring(0,10), until: info.event.end?.toISOString().substring(0,10)}})
+        {id: id, date: start?.toISOString().substring(0,10), until: end?.toISOString().substring(0,10)}})
     }
 
     console.log(events)

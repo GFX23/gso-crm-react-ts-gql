@@ -1,0 +1,44 @@
+@keyframes movePaddleOne {
+  0%, 100% {
+    transform: translate(0px, 100px);
+  }
+  25% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0px, 0px);
+  }
+  75% {
+    transform: translate(0px, 100px);
+  }
+}
+
+@keyframes movePaddleTwo {
+  0%, 100% {
+    transform: translate(0px, -50px);
+  }
+  25% {
+    transform: translate(0px, 10px);
+  }
+  50% {
+    transform: translate(0px, 0px);
+  }
+  75% {
+    transform: translate(0px, 50px);
+  }
+}
+
+@keyframes moveBall {
+  0%, 100% {
+    transform: translate(-180px, 30px);
+  }
+  25% {
+    transform: translate(18px, -25px);
+  }
+  50% {
+    transform: translate(-180px, -55px);
+  }
+  75% {
+    transform: translate(18px, 15px);
+  }
+}
