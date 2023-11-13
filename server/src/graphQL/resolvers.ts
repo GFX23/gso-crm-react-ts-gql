@@ -1,4 +1,4 @@
-import type { Order, OrderInput, Customer } from "../types/types";
+import type { Order, OrderInput, Customer, ItemInput } from "../types/types";
 import { getDb } from "../mongobase/mongoDB";
 import { CustomerModel, OrderModel } from "../mongobase/models";
 import { measurePerformance } from "../utils/helpers";
@@ -48,10 +48,28 @@ const Resolvers = {
       _: any,
       args: { id: string; date: string; until: string }
     ): Promise<Order | null> => {
-      return await measurePerformance(`Order ${args.id} update`, async () => {
+      return await measurePerformance(`Order ${args.id} date update`, async () => {
         return OrderModel.findByIdAndUpdate(args.id, {
           machining: { date: args.date, until: args.until },
         });
+      });
+    },
+
+    updateOrderItems: async (
+      _: any,
+      args: { id: string; item: ItemInput }
+    ): Promise<Order | null> => {
+      return await measurePerformance(`Order ${args.id} item update`, async () => {
+        return OrderModel.findByIdAndUpdate(args.id, { $push: { items: args.item } });
+      });
+    },
+
+    deleteOrderItem: async (
+      _: any,
+      args: { id: string; itemId: string }
+    ): Promise<Order | null> => {
+      return await measurePerformance(`Order ${args.id} item delete`, async () => {
+        return OrderModel.findByIdAndUpdate(args.id, { $pull:{items: { _id: args.itemId } } });
       });
     },
 

@@ -16,6 +16,13 @@ export type Operations = [
   {type:"shipping", state: boolean, date: string},
 ]
 
+export type ItemInput = {
+  name: string;
+  price: string;
+  quantity: string;
+  status: string;
+};
+
 export type OrderInput = {
   name: string;
   customer: string;

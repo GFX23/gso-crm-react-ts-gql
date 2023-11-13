@@ -48,6 +48,13 @@ input OrderInput {
   shippingDate: String!
 }
 
+input OrderItemInput {
+  name: String!
+  price: String!
+  quantity: String!
+  status: String!
+}
+
 type Order {
   id: String
   name: String
@@ -91,6 +98,8 @@ type Machining {
     deleteCustomer(id: String!): Customer
     deleteOrder(id: String!): Order
     updateOrderDate(id: String!, date: String!, until: String!): Order
+    updateOrderItems(id: String!, item: OrderItemInput!): Order
+    deleteOrderItem(id: String!, itemId: String!): Order
   }
 `;
 export default Schema; 
