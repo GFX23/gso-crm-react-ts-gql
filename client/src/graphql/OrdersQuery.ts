@@ -64,6 +64,37 @@ export const UPDATE_ORDER_DATE = gql`
   }
 `;
 
+export const UPDATE_ORDER_ITEMS = gql`
+  mutation updateOrderItems($id: String!, $item: OrderItemInput!) {
+    updateOrderItems(id: $id, item: $item) {
+      id
+      name
+      items {
+        name
+        id
+        price
+        quantity
+      }
+  }
+}
+`;
+
+export const DELETE_ORDER_ITEM = gql`
+  mutation deleteOrderItem($id: String!, $itemId: String!) {
+    deleteOrderItem(id: $id, itemId: $itemId) {
+      id
+      name
+      items {
+        id
+        name
+        status
+        price
+        quantity
+      }
+    }
+  }
+`;
+
 
 export const ADD_ORDER = gql`
   mutation addOrder($input: OrderInput!) {
